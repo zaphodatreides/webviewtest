@@ -13,6 +13,7 @@ import android.widget.EditText;
 public class WebViewExample extends Activity{ 
 
     WebView webView;
+    EditText text;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -28,12 +29,27 @@ public class WebViewExample extends Activity{
                 gotoPage();             
             }
         });
-
+        Button save = (Button) findViewById (R.id.save);
+        save.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                saveLink();             
+            }
+        });
+        
+        Button back = (Button) findViewById (R.id.back);
+        back.setOnClickListener(new OnClickListener() {           
+            @Override
+            public void onClick(View v) {
+                discardLink();             
+            }
+        });
+        text = (EditText) findViewById(R.id.url);
+        text.setMaxLines(1);
     }
 
     private void gotoPage(){
 
-        EditText text = (EditText) findViewById(R.id.url);
         String url = text.getText().toString();
 
         WebSettings webSettings = webView.getSettings();
@@ -42,6 +58,16 @@ public class WebViewExample extends Activity{
         webView.setWebViewClient(new Callback());  //HERE IS THE MAIN CHANGE
         webView.loadUrl(url);
 
+    }
+    
+    private void saveLink(){
+    	text.setText(webView.getUrl());
+    	
+    	
+    }
+    
+    private void discardLink(){
+    	
     }
 
     private class Callback extends WebViewClient{  //HERE IS THE MAIN CHANGE. 

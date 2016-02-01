@@ -3,17 +3,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
     <LinearLayout
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">
-
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+ 
         <EditText 
             android:id="@+id/url"
             android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_weight="1"
-            android:hint="Input URL"/>
+            android:hint="Input URL"
+            android:maxLines="1"
+            android:maxLength="25"
+            android:maxEms="4"
+            android:scrollHorizontally="true"
+            />
+    </RelativeLayout>
+        
+            
 
         <Button 
             android:id="@+id/run"
@@ -21,13 +31,30 @@
             android:layout_width="wrap_content"
             android:layout_weight="0"
             android:text="GO"/>
+        
+        <Button
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="S" />
 
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="B" />
+        
+        
     </LinearLayout>
 
-    <WebView 
-        android:id="@+id/webview"
-        android:layout_height="fill_parent"
-        android:layout_width="fill_parent"/>
+     <WebView
+         android:id="@+id/webview"
+         android:layout_width="fill_parent"
+         android:layout_height="408dp" />
 
+    
+   
 </LinearLayout>
 
