@@ -13,11 +13,10 @@
         <EditText 
             android:id="@+id/url"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"           
             android:hint="Input URL"
             android:maxLines="1"
-            android:maxLength="25"
+            android:maxLength="100"
             android:maxEms="4"
             android:scrollHorizontally="true"
             />
@@ -38,8 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="S" />
-
-        <Button
+ 		<Button
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,6 +51,11 @@
          android:id="@+id/webview"
          android:layout_width="fill_parent"
          android:layout_height="408dp" />
+     <WebView
+         android:id="@+id/webview2"
+         android:layout_width="fill_parent"
+         android:layout_height="408dp" />
+     
 
     
    
