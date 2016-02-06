@@ -16,14 +16,13 @@ import java.io.RandomAccessFile;
 
 public class WebViewExample extends Activity{ 
 
-    WebView webView;
-    WebView webView2;
-    EditText text;
-    int scrollx,scrolly;
-    String mub = "file:///sdcard/beautifulsoup/";
-    String mue = "/test3.html";
-    String mainurl;
-    String secondaryurl = null;
+    public WebView webView;
+    public WebView webView2;
+    public EditText text;
+    public String mub = "file:///sdcard/beautifulsoup/";
+    public String mue = "/test3.html";
+    public String mainurl;
+    public String secondaryurl = null;
     
     @Override
     
@@ -32,7 +31,7 @@ public class WebViewExample extends Activity{
     	
     if (secondaryurl != null){
     	Log.e ("basic",webView2.getUrl());
-    	webView2.setVisibility(View.INVISIBLE );
+    	webView2.setVisibility(View.GONE );
     	webView.setVisibility(View.VISIBLE);
     	secondaryurl = null;
     	Toast.makeText(getApplicationContext(), " Press Back again to Exit ", Toast.LENGTH_SHORT).show();
@@ -73,7 +72,7 @@ public class WebViewExample extends Activity{
             @Override
             public void onClick(View v) {
                 secondaryurl=null;
-                webView2.setVisibility(View.INVISIBLE);
+                webView2.setVisibility(View.GONE);
                 webView.setVisibility(View.VISIBLE );
             }
         });
@@ -94,6 +93,7 @@ public class WebViewExample extends Activity{
         webSettings.setBuiltInZoomControls(true);
 
         webView.setWebViewClient(new Callback());  //HERE IS THE MAIN CHANGE
+        webView2.setWebViewClient(new Callback());
         Log.e ("basic",mainurl);
         webView.loadUrl(mainurl);
 
@@ -112,8 +112,9 @@ public class WebViewExample extends Activity{
     	}
     	
     	//text.setText(webView.getUrl());
-    	webView2.setVisibility(View.INVISIBLE);
+    	webView2.setVisibility(View.GONE);
     	webView.setVisibility(View.VISIBLE);
+    	Log.e ("basic",webView.getUrl());
     	secondaryurl = null;
     	
   	   	
@@ -132,11 +133,16 @@ public class WebViewExample extends Activity{
         	//scrollx=view.getScrollX();
         	//scrolly=view.getScrollY();
         	//Log.e("basic",String.format("getscrollx&y called returned values %d %d ",scrollx,scrolly));
-        	secondaryurl=url;
-        	webView2.loadUrl(secondaryurl);
-        	webView.setVisibility(View.INVISIBLE);
-        	webView2.setVisibility(view.VISIBLE);
-            return (false);
+        	if (view==webView){
+        		secondaryurl=url;
+        		webView2.loadUrl(secondaryurl);
+        		webView.stopLoading();
+        		webView.setVisibility(View.GONE);
+        		webView2.setVisibility(view.VISIBLE);
+        	}
+        		return (false);
+        	
+        		
         }
     /*    public void onPageFinished(WebView view, String url) {
         	Log.e ("basic","OnPageFinished called");
